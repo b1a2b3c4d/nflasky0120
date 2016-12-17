@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# coding:urf-8
+# coding:utf-8
 import os
 COV = None
 if os.environ.get('FLASK_COVERAGE'):

@@ -1,0 +1,8 @@
+<p>你好{{ user.username }},</p>
+<p>欢迎来到<b>Brasdom</b>!</p>
+<p>为了认证您的账户请<a href="{{ url_for('auth.confirm', token=token, _external=True) }}">点击这里</a>.</p>
+<p>或者，您可以将以下链接粘贴到您浏览器的地址栏里：</p>
+<p>{{ url_for('auth.confirm', token=token, _external=True) }}</p>
+<p>再会</p>
+<p>May the force be with you</p>
+<p><small>请不要回复此邮件。</small></p>

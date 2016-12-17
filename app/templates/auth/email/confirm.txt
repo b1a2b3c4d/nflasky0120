@@ -1,0 +1,13 @@
+你好{{ user.username }},
+
+欢迎来到Brasdom!
+
+为了认证您的账户请 点击这里:
+
+{{ url_for('auth.confirm', token=token, _external=True) }}
+
+再会，
+
+May the force be with you.
+
+请不要回复此邮件。

@@ -1,0 +1,44 @@
+<ul class="posts">
+    {% for post in posts %}
+    <li class="post">
+        <div class="post-thumbnail"> <!-- 文章头像 -->
+            <a href="{{ url_for('.user', username=post.author.username) }}">
+                <img class="img-rounded profile-thumbnail" src="{{ post.author.gravatar(size=40) }}">
+            </a>
+        </div>
+        <div class="post-content"> <!-- 文章内容 -->
+            <div class="post-date"> <!-- 文章日期 -->
+                {{ moment(post.timestamp).fromNow() }}
+            </div>
+            <div class="post-author"> <!-- 文章作者 -->
+                <a href="{{ url_for('.user', username=post.author.username) }}">
+                {{ post.author.username }}</a>
+            </div>
+            <div class="post-body"> <!-- 文章内容 -->
+                {% if post.body_html %}
+                    {{ post.body_html | safe }}
+                {% else %}
+                    {{ post.body }}
+                {% endif %}
+            </div>
+            <div class="post-footer"> <!-- 文章脚标；修改权限 -->
+                {% if current_user == post.author %}
+                <a href="{{ url_for('.edit', id=post.id) }}">
+                    <span class="label label-primary">编辑</span>
+                </a>
+                {% elif current_user.is_administrator() %}
+                <a href="{{ url_for('.edit', id=post.id) }}">
+                    <span class="label label-danger">编辑 [管理员]</span>
+                </a>
+                {% endif %}
+                <a href="{{ url_for('.post', id=post.id) }}">
+                    <span class="label label-default">分享此文章的链接</span>
+                </a>
+                <a href="{{ url_for('.post', id=post.id) }}#comments">
+                    <span class="label label-primary">{{ post.comments.count() }} 评论</span>
+                </a>
+            </div>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
