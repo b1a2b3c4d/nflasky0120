@@ -240,7 +240,7 @@ class User(UserMixin, db.Model): # 用户表 记录用户信息的表
     def is_administrator(self):  # 判断是否是管理员
         return self.can(Permission.ADMINISTER)
 
-    def ping(self):  # 最后登陆时间
+    def ping(self):  # 最后登陆时间 在auth/views中被before_required调用。
         self.last_seen = datetime.utcnow()
         db.session.add(self)
         db.session.commit()
