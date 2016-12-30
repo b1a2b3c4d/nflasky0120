@@ -2,7 +2,7 @@
 <!-- 继承bootstrap/base.html模板-->
 {% block title %}Brasdom{% endblock %}
 
-{% block head %} <!--{% %}用于执行诸如 for 循环 或赋值的语句-->
+{% block head %} <!--大括号加百分号用于执行诸如 for 循环 或赋值的语句-->
 {{ super() }} <!-- 用super()获取原来的内容-->
 <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
 <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">

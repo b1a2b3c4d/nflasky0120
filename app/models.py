@@ -253,8 +253,13 @@ class User(UserMixin, db.Model): # 用户表 记录用户信息的表
             url = 'http://www.gravatar.com/avatar'
         hash = self.avatar_hash or hashlib.md5(
             self.email.encode('utf-8')).hexdigest()
+        # hexdigest()获取散列值，hashlib.md5()生成散列值
+        # http://www.cnblogs.com/the4king/archive/2012/02/06/2340660.html
         return '{url}/{hash}?s={size}&d={default}&r={rating}'.format(
             url=url, hash=hash, size=size, default=default, rating=rating)
+        # format用法http://blog.csdn.net/handsomekang/article/details/9183303
+        # 查询字符串：s图片大小，r图片级别，
+        # d没注册Gravatar用户使用的默认图片生成方式。
 
     def follow(self, user):  # 关注
         if not self.is_following(user):
